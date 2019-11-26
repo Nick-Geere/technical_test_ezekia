@@ -11,14 +11,14 @@ class import extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'import:candidates';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Imports people and job data into a table and prints it out in the console.';
 
     /**
      * Create a new command instance.
@@ -37,6 +37,16 @@ class import extends Command
      */
     public function handle()
     {
-        //
+        //grab the csv
+
+        //import the csv into an array
+
+        //create the tables in the database
+
+        //import the data from the arrays into the database tables
+
+        //fetch data from the tables and print them out
+
+        //complete
     }
 }
