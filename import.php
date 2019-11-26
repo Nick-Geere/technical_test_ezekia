@@ -3,6 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class import extends Command
 {
@@ -75,7 +78,25 @@ class import extends Command
         //close the csv
         fclose($jobs_csv);
 
-        //create the tables in the database
+        //creating the candidates table
+        Schema::create('candidates', function (Blueprint $table) {
+            $table->bigIncrements('candidate_id');
+            $table->string('forename');
+            $table->string('surname');
+            $table->string('email_address');
+            $table->timestamps();
+        });
+
+        //creating the jobs table
+        Schema::create('candidates_jobs', function (Blueprint $table) {
+            $table->bigIncrements('candidate_jobs_id');
+            $table->bigIncrements('candidate_id');
+            $table->string('job_title');
+            $table->string('company_name');
+            $table->string('start_date');
+            $table->string('end_date');
+            $table->timestamps();
+        });
 
         //import the data from the arrays into the database tables
 
