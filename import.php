@@ -37,9 +37,25 @@ class import extends Command
      */
     public function handle()
     {
-        //grab the csv
+        //Importing the candidates csv into an array
+        //grab the candidates csv
+        $candidates_csv = fopen('candidates.csv', 'r');
+        //setup an empty array to store the data in
+        $candidates_array = array();
 
-        //import the csv into an array
+        //while loop to loop through the data
+        $i = 1;
+        while($csv_line = fgetcsv($candidates_csv, 1000, ",")) {
+          $candidates_array[$i]['candidate_id'] = $csv_line[0];
+          $candidates_array[$i]['forename'] = $csv_line[1];
+          $candidates_array[$i]['surname'] = $csv_line[2];
+          $candidates_array[$i]['email_address'] = $csv_line[3];
+        }
+
+        //close the csv
+        fclose($candidates_csv);
+
+        //NEED TO WRITE THE IMPORT FOR THE JOBS CSV
 
         //create the tables in the database
 
