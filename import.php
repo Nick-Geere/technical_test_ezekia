@@ -55,7 +55,25 @@ class import extends Command
         //close the csv
         fclose($candidates_csv);
 
-        //NEED TO WRITE THE IMPORT FOR THE JOBS CSV
+        //Importing the jobs csv into an array
+        //grab the jobs csv
+        $jobs_csv = fopen('jobs.csv', 'r');
+        //setup an empty array to store the data in
+        $jobs_array = array();
+
+        //while loop to loop through the data
+        $i = 1;
+        while($csv_line = fgetcsv($jobs_csv, 1000, ",")) {
+          $jobs_array[$i]['candidate_jobs_id'] = $csv_line[0];
+          $jobs_array[$i]['candidate_id'] = $csv_line[1];
+          $jobs_array[$i]['job_title'] = $csv_line[2];
+          $jobs_array[$i]['company_name'] = $csv_line[3];
+          $jobs_array[$i]['start_date'] = $csv_line[4];
+          $jobs_array[$i]['end_date'] = $csv_line[5];
+        }
+
+        //close the csv
+        fclose($jobs_csv);
 
         //create the tables in the database
 
